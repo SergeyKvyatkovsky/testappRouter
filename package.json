@@ -1,0 +1,10 @@
+{
+  "name": "certifications-approuter",
+  "version": "1.0.0",
+  "scripts": {},
+  "private": true,
+  "dependencies": {},
+  "devDependencies": {
+    "axios": "^0.26.1"
+  }
+}

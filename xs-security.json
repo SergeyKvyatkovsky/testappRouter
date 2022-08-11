@@ -1,0 +1,28 @@
+{
+  "xsappname": "certifications-approuter",
+  "tenant-mode": "dedicated",
+  "scopes": [
+    {
+      "name": "$XSAPPNAME.Display",
+      "description": "display"
+    }
+  ],
+  "role-templates": [
+    {
+      "name": "Tester",
+      "description": "LHub Portal Tester Role in non-prod environments",
+      "scope-references": [
+        "$XSAPPNAME.Display"
+      ]
+    }
+  ],
+  "role-collections": [
+    {
+      "name": "LH Tester",
+      "description": "LHub Portal Tester Collection in non-prod environments",
+      "role-template-references": [
+        "$XSAPPNAME.Tester"
+      ]
+    }
+  ]
+}
