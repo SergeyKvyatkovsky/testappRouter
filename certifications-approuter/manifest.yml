@@ -1,0 +1,22 @@
+applications:
+  - name: certifications_approuter
+    routes:
+      - route: certifications-((route-environment-name)).cfapps.eu10.hana.ondemand.com
+    path: approuter
+    memory: 256M
+    buildpacks:
+      - nodejs_buildpack
+    env:
+      SESSION_TIMEOUT: 480
+      COOKIES: >
+        { "SameSite":"Lax" }
+      destinations: >
+        [
+          {"name":"certifications-frontend", "url" :"https://certifications-frontend-((environment-name)).cfapps.eu10.hana.ondemand.com", "forwardAuthToken": true },
+          {"name":"certifications-backend", "url" :"https://certifications-backend-((environment-name)).cfapps.eu10.hana.ondemand.com", "forwardAuthToken": true }
+        ]
+    services:
+      - certifications-xsuaa
+      - certifications-connectivity
+      - certifications-destination
+      - certifications-logs

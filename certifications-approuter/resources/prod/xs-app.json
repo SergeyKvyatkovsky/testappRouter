@@ -1,0 +1,77 @@
+{
+  "welcomeFile": "index.html",
+  "authenticationMethod": "route",
+  "logout": {
+    "logoutEndpoint": "/logout",
+    "logoutPage": "/logout.html"
+  },
+  "routes": [
+    {
+      "source": "^/user-api/attributes$",
+      "target": "/attributes",
+      "service": "sap-approuter-userapi"
+    },
+    {
+      "source": "^/common-navigation-api/(.*)$",
+      "target": "/common-navigation-api/$1",
+      "destination": "common_navigation_proxy",
+      "authenticationType": "xsuaa"
+    },
+    {
+      "source": "^/common-navigation-api-public/(.*)$",
+      "target": "/common-navigation-api/$1",
+      "destination": "common_navigation_proxy_public",
+      "authenticationType": "none"
+    },
+    {
+      "source": "^/assets/newlxp-components/(.*)$",
+      "target": "/assets/newlxp-components/$1",
+      "destination": "common_navigation_resources",
+      "authenticationType": "none"
+    },
+    {
+      "source": "^/web-components(.*)$",
+      "target": "/web-components$1",
+      "destination": "common_navigation_resources",
+      "authenticationType": "none"
+    },
+    {
+      "source": "^/search-backend/(.*)$",
+      "target": "/api/$1",
+      "destination": "search_backend_proxy",
+      "authenticationType": "xsuaa"
+    },
+    {
+      "source": "^/api/(.*)$",
+      "target": "/api/$1",
+      "destination": "certifications-backend",
+      "authenticationType": "xsuaa"
+    },
+    {
+      "source": "^/logout.html(.*)$",
+      "localDir": "./",
+      "authenticationType": "none"
+    },
+    {
+      "source": "^/robots.txt(.*)$",
+      "localDir": "./",
+      "authenticationType": "none"
+    },
+    {
+      "source": "^/.well-known/(.*)$",
+      "localDir": ".well-known",
+      "target": "$1",
+      "authenticationType": "none"
+    },
+    {
+      "source": "^/(.*)$",
+      "target": "/$1",
+      "destination": "certifications-frontend",
+      "authenticationType": "xsuaa",
+      "cacheControl": "no-cache, no-store, must-revalidate"
+    }
+  ],
+  "errorPage" : [
+    {"status": [500, 501], "file": "./error.html"}
+  ]
+}
